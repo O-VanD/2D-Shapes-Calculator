@@ -6,13 +6,20 @@
 package pkg2d.shape.calculator;
 
 import java.util.Scanner;
+import java.text.DecimalFormat;
 /**
  *
  * @author Owen
  */
 public class UserInput {
     
-    Scanner input = new Scanner(System.in);
+    Scanner input;
+    DecimalFormat format;
+
+    public UserInput() {
+        this.input = new Scanner(System.in);
+        this.format = new DecimalFormat("#.##");
+    }
         
     public void Start(){
         boolean validEntry = false;
@@ -46,26 +53,30 @@ public class UserInput {
     }    
     
     public void rectangleShape(){
-        boolean validInput = false;
-        System.out.print("What is the length: ");
+        boolean isDone = false;
+        
+        System.out.print("\nWhat is the length: ");
         double l = input.nextDouble();
         System.out.print("What is the height: ");
         double h = input.nextDouble();
         
         Rectangle rectangle = new Rectangle(l,h);
         
-        System.out.println("Would you like to:");
-        System.out.print("1. Find the area \n2. Find the perimemter \n");
-        int find = input.nextInt();
+        
 
-        while (!validInput){
+        while (!isDone){
+            System.out.println("\nWould you like to:");
+            System.out.print("1. Find the area \n2. Find the perimemter \n3. Quit \n");
+            int find = input.nextInt();
+            
             switch(find) {
-                case 1: System.out.println("The area of the reactangle is " + rectangle.getArea());
-                validInput = true;
+                case 1: System.out.println("The area of the reactangle is " + format.format(rectangle.getArea()));
                 break;
                 
-                case 2: System.out.println("The perimemter of the rectangle is " +rectangle.getPerimeter());
-                validInput = true;
+                case 2: System.out.println("The perimemter of the rectangle is " + format.format(rectangle.getPerimeter()));
+                break;
+                
+                case 3: isDone = true;
                 break;
                 
                 default: System.out.println("Please enter a valid number based on the options above");
@@ -74,8 +85,9 @@ public class UserInput {
     }
     
     public void triangleShape(){
-        boolean validInput = false;
-        System.out.print("What is the base: ");
+        boolean isDone = false;
+        
+        System.out.print("\nWhat is the base: ");
         double b = input.nextDouble();
         System.out.print("What is the height: ");
         double h = input.nextDouble();
@@ -86,19 +98,19 @@ public class UserInput {
         
         Triangle triangle = new Triangle(b,h,s1,s2);
         
-        System.out.println("Would you like to:");
-        System.out.print("1. Find the area \n2. Find the perimemter \n");
-        int find = input.nextInt();
-
-        while (!validInput){
+        while (!isDone){
+            System.out.println("\nWould you like to:");
+            System.out.print("1. Find the area \n2. Find the perimemter \n3. Quit \n");
+            int find = input.nextInt();
+            
             switch(find) {
-                case 1: System.out.println("The area of the triangle is " + triangle.getArea());
-                validInput = true;
+                case 1: System.out.println("The area of the triangle is " + format.format(triangle.getArea()));
                 break;
                 
-                case 2: System.out.println("The perimemter of the triangle is " +triangle.getPerimeter());
-                validInput = true;
+                case 2: System.out.println("The perimemter of the triangle is " + format.format(triangle.getPerimeter()));
                 break;
+                
+                case 3: isDone = true;
                 
                 default: System.out.println("Please enter a valid number based on the options above");
             }
@@ -106,25 +118,25 @@ public class UserInput {
     }
     
     public void circleShape(){
-        boolean validInput = false;
-        System.out.print("What is the radius: ");
+        System.out.print("\nWhat is the radius: ");
         double r = input.nextDouble();
-        
+        boolean isDone = false;
         
         Circle circle = new Circle(r);
         
-        System.out.println("Would you like to:");
-        System.out.print("1. Find the area \n2. Find the perimemter \n");
-        int find = input.nextInt();
-
-        while (!validInput){
+        while (!isDone){
+            System.out.println("\nWould you like to:");
+            System.out.print("1. Find the area \n2. Find the perimemter \n3. Quit \n");
+            int find = input.nextInt();
+            
             switch(find) {
-                case 1: System.out.println("The area of the circle is " + circle.getArea());
-                validInput = true;
+                case 1: System.out.println("The area of the circle is " + format.format(circle.getArea()));
                 break;
                 
-                case 2: System.out.println("The perimemter of the circle is " +circle.getPerimeter());
-                validInput = true;
+                case 2: System.out.println("The perimemter of the circle is " + format.format(circle.getPerimeter()));
+                break;
+                
+                case 3: isDone = true;
                 break;
                 
                 default: System.out.println("Please enter a valid number based on the options above");
